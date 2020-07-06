@@ -10,7 +10,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.IllegalStateException
 import java.util.*
 
 internal class LoadBalancerTest {
@@ -93,7 +92,7 @@ internal class LoadBalancerTest {
     fun shouldGetResultFromLoadBalancer() {
         val loadBalancer = LoadBalancer(1, roundRobinScheduler, heartBeatChecker, clusterCapacityLimitCalculator)
 
-        val deferred = (1..1).map { n ->
+        val deferred = (1..1).map {
             GlobalScope.async {
                 loadBalancer.get()
             }
@@ -108,7 +107,7 @@ internal class LoadBalancerTest {
     fun shouldGetResultFromLoadBalancer2() {
         val loadBalancer = LoadBalancer(3, 2, roundRobinScheduler, heartBeatChecker, clusterCapacityLimitCalculator)
 
-        val deferred = (1..3).map { n ->
+        val deferred = (1..6).map {
             GlobalScope.async {
                 loadBalancer.get()
             }
@@ -124,7 +123,7 @@ internal class LoadBalancerTest {
         val loadBalancer = LoadBalancer(1, roundRobinScheduler, heartBeatChecker, clusterCapacityLimitCalculator)
 
         assertThrows<IllegalStateException> {
-            val deferred = (1..3).map { n ->
+            val deferred = (1..10).map {
                 GlobalScope.async {
                     loadBalancer.get()
                 }

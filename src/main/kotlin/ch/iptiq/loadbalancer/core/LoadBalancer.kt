@@ -40,7 +40,7 @@ class LoadBalancer(
         scheduler: ProviderScheduler,
         heartBeatChecker: HeartBeatChecker,
         clusterCapacityCalculator : ClusterCapacityLimitCalculator
-    ) : this(numberOfProviders, 1, scheduler, heartBeatChecker, clusterCapacityCalculator, false)
+    ) : this(numberOfProviders, capacity, scheduler, heartBeatChecker, clusterCapacityCalculator, false)
 
     init {
         val effectiveNumberOfProviders = numberOfProviders.coerceAtLeast(1).coerceAtMost(MAX_PROVIDERS)
