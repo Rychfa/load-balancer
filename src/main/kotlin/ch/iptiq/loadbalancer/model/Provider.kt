@@ -7,12 +7,11 @@ import java.util.*
 class Provider(val capacity: Int) {
 
     private val uuid: UUID = UUID.randomUUID()
-
-    constructor() : this(1)
-
     var status: ProviderStatus = ACTIVE
     var health: ProviderStatus = HEALTHY
     var recoveryCounter: Int = 0
+
+    constructor() : this(1)
 
 
     fun get(): UUID {
